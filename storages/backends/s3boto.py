@@ -13,7 +13,7 @@ from django.core.files.storage import Storage
 from django.utils import timezone as tz
 from django.utils.deconstruct import deconstructible
 from django.utils.encoding import (
-    filepath_to_uri, force_bytes, force_text, smart_str,
+    filepath_to_uri, force_bytes, force_str, smart_str,
 )
 
 from storages.utils import (
@@ -376,7 +376,7 @@ class S3BotoStorage(Storage):
         return smart_str(name, encoding=self.file_name_charset)
 
     def _decode_name(self, name):
-        return force_text(name, encoding=self.file_name_charset)
+        return force_str(name, encoding=self.file_name_charset)
 
     def _compress_content(self, content):
         """Gzip a given string content."""
